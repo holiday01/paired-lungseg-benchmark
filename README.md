@@ -82,8 +82,9 @@ The derived result files and the raw imaging data are not distributed (see Data 
 
 ## Data availability
 - **Single-site cohort** (145 tumour masks / 102 patients): not public, owing to institutional
-  data-sharing restrictions (IRB114-168-B, Lotung Pohai Hospital). Derived result files are held by
-  the authors and available on reasonable request; they are not distributed in this repository.
+  data-sharing restrictions (IRB114-168-B, Lotung Pohai Hospital). Neither the imaging data nor the
+  derived result files are distributed. This repository is the code only; run it on your own data
+  using the flow above.
 - **External cohort**: TCIA **NSCLC-Radiomics** ("Lung1"), publicly available
   (doi:10.7937/K9/TCIA.2015.PF0M9REI; Aerts et al. 2014, Nat. Commun.; Clark et al. 2013,
   J. Digit. Imaging). The external scripts run on this public collection after preprocessing.
