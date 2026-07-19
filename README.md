@@ -26,21 +26,29 @@ and external validation on TCIA NSCLC-Radiomics.
 | `analysis/make_fig_strategies.py`, `make_fig_external.py`, `make_fig_bysize_froc.py` | the figures (each with an assert-guard reproducing the stored numbers) | Figs. 1–4 |
 
 ## Provenance
-Every number in the paper is computed by these scripts from the result JSONs; no value is
-hand-entered. The figure scripts assert that recomputed values reproduce the stored JSON numbers
-before saving. The result JSONs are included under `results/` so the tables and figures can be
-regenerated **without** the raw imaging data:
+Every number in the paper is computed by these scripts from per-run result files written by the
+training code; no value is hand-entered, and the figure/table scripts assert that recomputed values
+reproduce the stored numbers before saving. **This repository provides the code and pipeline only.**
+The derived result files and the raw imaging data are not distributed (see Data availability), so
+running the aggregation and figure scripts first requires regenerating the per-run outputs with the
+training code on the source cohort. The intended flow is:
 
 ```bash
+# 1. preprocess the source cohort -> per-case volumes
+python scripts/preprocess_seg.py
+# 2. train each strategy/seed -> one result file per run
+python scripts/train_seg.py --tag S2_dynunet_plain --seed 7 ...
+# 3. aggregate + figures (assert-guarded against the stored run outputs)
 python analysis/aggregate_seg_ranking.py      # -> Table 2
 python analysis/aggregate_seg_paired.py        # -> Table 3
 python analysis/make_fig_strategies.py         # -> Fig. 1
+python analysis/make_supplementary.py          # -> Supplementary Tables S1–S5
 ```
 
 ## Data availability
 - **Single-site cohort** (145 tumour masks / 102 patients): not public, owing to institutional
-  data-sharing restrictions (IRB114-168-B, Lotung Pohai Hospital). Derived, de-identified result
-  JSONs are included here.
+  data-sharing restrictions (IRB114-168-B, Lotung Pohai Hospital). Derived result files are held by
+  the authors and available on reasonable request; they are not distributed in this repository.
 - **External cohort**: TCIA **NSCLC-Radiomics** ("Lung1"), publicly available
   (doi:10.7937/K9/TCIA.2015.PF0M9REI; Aerts et al. 2014, Nat. Commun.; Clark et al. 2013,
   J. Digit. Imaging). The external scripts run on this public collection after preprocessing.

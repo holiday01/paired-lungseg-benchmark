@@ -9,6 +9,10 @@
 *.pth
 checkpoints/
 
+# Derived result files — code-only release; regenerated locally from the source cohort
+results/
+*.json
+
 # Python
 __pycache__/
 *.pyc
