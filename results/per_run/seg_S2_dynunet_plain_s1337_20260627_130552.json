@@ -1,0 +1,97 @@
+{
+  "timestamp": "20260627_130552",
+  "ssl": "none",
+  "tag": "S2_dynunet_plain_s1337",
+  "seed": 1337,
+  "n_train_cases": 62,
+  "n_val_cases": 20,
+  "n_test_cases": 20,
+  "n_unlabeled": 0,
+  "max_iterations": 20000,
+  "best_val_dice": 0.6802961139198681,
+  "test_dice": 0.5759900418155487,
+  "dice_by_size": {
+    "<1cm3": [
+      0.49482187907047115,
+      5
+    ],
+    "1-10cm3": [
+      0.6025602048666105,
+      21
+    ],
+    "10-50cm3": [
+      0.4736945948408836,
+      4
+    ],
+    ">=50cm3": [
+      0.8330392193673004,
+      1
+    ]
+  },
+  "lesion_detection_sens": 0.9354838709677419,
+  "history": [
+    {
+      "iter": 2000,
+      "val_dice": 0.20499177381665099
+    },
+    {
+      "iter": 4000,
+      "val_dice": 0.4327097042533431
+    },
+    {
+      "iter": 6000,
+      "val_dice": 0.47442304703923377
+    },
+    {
+      "iter": 8000,
+      "val_dice": 0.35599248439975684
+    },
+    {
+      "iter": 10000,
+      "val_dice": 0.5808313173988433
+    },
+    {
+      "iter": 12000,
+      "val_dice": 0.6052956553185213
+    },
+    {
+      "iter": 14000,
+      "val_dice": 0.6802961139198681
+    },
+    {
+      "iter": 16000,
+      "val_dice": 0.6759682204959431
+    },
+    {
+      "iter": 18000,
+      "val_dice": 0.6776997837390207
+    },
+    {
+      "iter": 20000,
+      "val_dice": 0.673099825602909
+    }
+  ],
+  "config": {
+    "ssl": "none",
+    "model": "dynunet",
+    "max_iterations": 20000,
+    "eval_every": 2000,
+    "labeled_bs": 2,
+    "unlabeled_bs": 2,
+    "lr": 0.001,
+    "cons_weight": 1.0,
+    "cons_rampup": 400,
+    "ema_decay": 0.99,
+    "loss": "dicece",
+    "ema_eval": false,
+    "copypaste": false,
+    "augment": false,
+    "postproc": false,
+    "spacing": 1.0,
+    "n_unlabeled": 400,
+    "max_labeled_cases": 0,
+    "seed": 1337,
+    "seg_dir": "data/processed_seg_1mm",
+    "tag": "S2_dynunet_plain_s1337"
+  }
+}

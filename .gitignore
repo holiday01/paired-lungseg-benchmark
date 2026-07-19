@@ -1,0 +1,25 @@
+# Raw / derived imaging data — never commit
+*.nii
+*.nii.gz
+*.dcm
+*.nrrd
+*.npy
+*.npz
+*.pt
+*.pth
+checkpoints/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+*.egg-info/
+
+# Generated figures (regenerate with analysis/make_fig_*.py)
+*.pdf
+*.png
+
+# OS
+.DS_Store
+Thumbs.db

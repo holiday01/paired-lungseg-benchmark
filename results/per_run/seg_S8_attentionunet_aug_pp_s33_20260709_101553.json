@@ -1,0 +1,103 @@
+{
+  "timestamp": "20260709_101553",
+  "ssl": "none",
+  "tag": "S8_attentionunet_aug_pp_s33",
+  "seed": 33,
+  "n_train_cases": 62,
+  "n_val_cases": 20,
+  "n_test_cases": 20,
+  "n_unlabeled": 0,
+  "max_iterations": 20000,
+  "best_val_dice": 0.49626620079371003,
+  "test_dice": 0.6179269316900073,
+  "dice_by_size": {
+    "<1cm3": [
+      0.7669322709163346,
+      1
+    ],
+    "1-10cm3": [
+      0.6275638818872104,
+      18
+    ],
+    "10-50cm3": [
+      0.5258871919855342,
+      3
+    ],
+    ">=50cm3": [
+      0.6086566869574944,
+      5
+    ]
+  },
+  "lesion_detection_sens": 0.8148148148148148,
+  "history": [
+    {
+      "iter": 2000,
+      "val_dice": 0.31601419601330694
+    },
+    {
+      "iter": 4000,
+      "val_dice": 0.2123467398846051
+    },
+    {
+      "iter": 6000,
+      "val_dice": 0.31134567790546364
+    },
+    {
+      "iter": 8000,
+      "val_dice": 0.41476753676042555
+    },
+    {
+      "iter": 10000,
+      "val_dice": 0.4139043375175515
+    },
+    {
+      "iter": 12000,
+      "val_dice": 0.3422646166608055
+    },
+    {
+      "iter": 14000,
+      "val_dice": 0.46394318757244635
+    },
+    {
+      "iter": 16000,
+      "val_dice": 0.367371736434541
+    },
+    {
+      "iter": 18000,
+      "val_dice": 0.49626620079371003
+    },
+    {
+      "iter": 20000,
+      "val_dice": 0.42078148296516116
+    }
+  ],
+  "config": {
+    "ssl": "none",
+    "model": "attentionunet",
+    "max_iterations": 20000,
+    "eval_every": 2000,
+    "labeled_bs": 2,
+    "unlabeled_bs": 2,
+    "lr": 0.001,
+    "cons_weight": 1.0,
+    "cons_rampup": 400,
+    "ema_decay": 0.99,
+    "uamt_t": 4,
+    "dropout": 0.0,
+    "pseudo_thresh": 0.9,
+    "patience": 0,
+    "loss": "dicece",
+    "ema_eval": false,
+    "copypaste": false,
+    "augment": true,
+    "postproc": true,
+    "spacing": 1.0,
+    "n_unlabeled": 400,
+    "max_labeled_cases": 0,
+    "seed": 33,
+    "seg_dir": "data/processed_seg_1mm",
+    "tag": "S8_attentionunet_aug_pp_s33",
+    "case_list": "",
+    "clean_mask_min": 0
+  }
+}

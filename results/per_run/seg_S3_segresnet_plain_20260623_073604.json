@@ -1,0 +1,97 @@
+{
+  "timestamp": "20260623_073604",
+  "ssl": "none",
+  "tag": "S3_segresnet_plain",
+  "seed": 7,
+  "n_train_cases": 62,
+  "n_val_cases": 20,
+  "n_test_cases": 20,
+  "n_unlabeled": 0,
+  "max_iterations": 20000,
+  "best_val_dice": 0.5347660961305559,
+  "test_dice": 0.5185639154157713,
+  "dice_by_size": {
+    "<1cm3": [
+      0.5148258692539381,
+      4
+    ],
+    "1-10cm3": [
+      0.5377280752426747,
+      22
+    ],
+    "10-50cm3": [
+      0.515673902230624,
+      2
+    ],
+    ">=50cm3": [
+      0.31812426282864575,
+      2
+    ]
+  },
+  "lesion_detection_sens": 0.9,
+  "history": [
+    {
+      "iter": 2000,
+      "val_dice": 0.1193706461639801
+    },
+    {
+      "iter": 4000,
+      "val_dice": 0.16043097620368815
+    },
+    {
+      "iter": 6000,
+      "val_dice": 0.38288670618308074
+    },
+    {
+      "iter": 8000,
+      "val_dice": 0.3976625005841976
+    },
+    {
+      "iter": 10000,
+      "val_dice": 0.4896863175014739
+    },
+    {
+      "iter": 12000,
+      "val_dice": 0.48349285834348255
+    },
+    {
+      "iter": 14000,
+      "val_dice": 0.4386327093623418
+    },
+    {
+      "iter": 16000,
+      "val_dice": 0.5347660961305559
+    },
+    {
+      "iter": 18000,
+      "val_dice": 0.5148348825369893
+    },
+    {
+      "iter": 20000,
+      "val_dice": 0.522117289443496
+    }
+  ],
+  "config": {
+    "ssl": "none",
+    "model": "segresnet",
+    "max_iterations": 20000,
+    "eval_every": 2000,
+    "labeled_bs": 2,
+    "unlabeled_bs": 2,
+    "lr": 0.001,
+    "cons_weight": 1.0,
+    "cons_rampup": 400,
+    "ema_decay": 0.99,
+    "loss": "dicece",
+    "ema_eval": false,
+    "copypaste": false,
+    "augment": false,
+    "postproc": false,
+    "spacing": 1.0,
+    "n_unlabeled": 400,
+    "max_labeled_cases": 0,
+    "seed": 7,
+    "seg_dir": "data/processed_seg_1mm",
+    "tag": "S3_segresnet_plain"
+  }
+}

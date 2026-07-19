@@ -1,0 +1,103 @@
+{
+  "timestamp": "20260709_055214",
+  "ssl": "none",
+  "tag": "S2_dynunet_plain_s33",
+  "seed": 33,
+  "n_train_cases": 62,
+  "n_val_cases": 20,
+  "n_test_cases": 20,
+  "n_unlabeled": 0,
+  "max_iterations": 20000,
+  "best_val_dice": 0.5208361300767392,
+  "test_dice": 0.6355490921655091,
+  "dice_by_size": {
+    "<1cm3": [
+      0.7364620938628159,
+      1
+    ],
+    "1-10cm3": [
+      0.6236765606332959,
+      18
+    ],
+    "10-50cm3": [
+      0.6094986477194172,
+      3
+    ],
+    ">=50cm3": [
+      0.6737378720096711,
+      5
+    ]
+  },
+  "lesion_detection_sens": 0.9629629629629629,
+  "history": [
+    {
+      "iter": 2000,
+      "val_dice": 0.2893455191794504
+    },
+    {
+      "iter": 4000,
+      "val_dice": 0.35915942141995616
+    },
+    {
+      "iter": 6000,
+      "val_dice": 0.5128593244524235
+    },
+    {
+      "iter": 8000,
+      "val_dice": 0.4831603555546306
+    },
+    {
+      "iter": 10000,
+      "val_dice": 0.49142565643572567
+    },
+    {
+      "iter": 12000,
+      "val_dice": 0.48833417065897056
+    },
+    {
+      "iter": 14000,
+      "val_dice": 0.5175620467761164
+    },
+    {
+      "iter": 16000,
+      "val_dice": 0.5208361300767392
+    },
+    {
+      "iter": 18000,
+      "val_dice": 0.5087400661917753
+    },
+    {
+      "iter": 20000,
+      "val_dice": 0.5162438270687609
+    }
+  ],
+  "config": {
+    "ssl": "none",
+    "model": "dynunet",
+    "max_iterations": 20000,
+    "eval_every": 2000,
+    "labeled_bs": 2,
+    "unlabeled_bs": 2,
+    "lr": 0.001,
+    "cons_weight": 1.0,
+    "cons_rampup": 400,
+    "ema_decay": 0.99,
+    "uamt_t": 4,
+    "dropout": 0.0,
+    "pseudo_thresh": 0.9,
+    "patience": 0,
+    "loss": "dicece",
+    "ema_eval": false,
+    "copypaste": false,
+    "augment": false,
+    "postproc": false,
+    "spacing": 1.0,
+    "n_unlabeled": 400,
+    "max_labeled_cases": 0,
+    "seed": 33,
+    "seg_dir": "data/processed_seg_1mm",
+    "tag": "S2_dynunet_plain_s33",
+    "case_list": "",
+    "clean_mask_min": 0
+  }
+}

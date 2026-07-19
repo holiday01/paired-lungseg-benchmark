@@ -1,0 +1,99 @@
+{
+  "timestamp": "20260701_104027",
+  "ssl": "uamt",
+  "tag": "S9_dynunet_uamt_s7",
+  "seed": 7,
+  "n_train_cases": 62,
+  "n_val_cases": 20,
+  "n_test_cases": 20,
+  "n_unlabeled": 400,
+  "max_iterations": 20000,
+  "best_val_dice": 0.44426336938382566,
+  "test_dice": 0.3359976600606554,
+  "dice_by_size": {
+    "<1cm3": [
+      0.1904481434058899,
+      4
+    ],
+    "1-10cm3": [
+      0.3001095358133529,
+      22
+    ],
+    "10-50cm3": [
+      0.8361299082935936,
+      2
+    ],
+    ">=50cm3": [
+      0.5217338118575752,
+      2
+    ]
+  },
+  "lesion_detection_sens": 0.5,
+  "history": [
+    {
+      "iter": 2000,
+      "val_dice": 0.1419133419720508
+    },
+    {
+      "iter": 4000,
+      "val_dice": 0.16065391720127953
+    },
+    {
+      "iter": 6000,
+      "val_dice": 0.2813457292956289
+    },
+    {
+      "iter": 8000,
+      "val_dice": 0.3890165754323032
+    },
+    {
+      "iter": 10000,
+      "val_dice": 0.41927709035454097
+    },
+    {
+      "iter": 12000,
+      "val_dice": 0.3388707880490444
+    },
+    {
+      "iter": 14000,
+      "val_dice": 0.44426336938382566
+    },
+    {
+      "iter": 16000,
+      "val_dice": 0.4232258094363386
+    },
+    {
+      "iter": 18000,
+      "val_dice": 0.3899218112824076
+    },
+    {
+      "iter": 20000,
+      "val_dice": 0.3980431397241953
+    }
+  ],
+  "config": {
+    "ssl": "uamt",
+    "model": "dynunet",
+    "max_iterations": 20000,
+    "eval_every": 2000,
+    "labeled_bs": 2,
+    "unlabeled_bs": 2,
+    "lr": 0.001,
+    "cons_weight": 1.0,
+    "cons_rampup": 400,
+    "ema_decay": 0.99,
+    "uamt_t": 4,
+    "dropout": 0.1,
+    "loss": "dicece",
+    "ema_eval": false,
+    "copypaste": false,
+    "augment": true,
+    "postproc": true,
+    "spacing": 1.0,
+    "n_unlabeled": 400,
+    "max_labeled_cases": 0,
+    "seed": 7,
+    "seg_dir": "data/processed_seg_1mm",
+    "tag": "S9_dynunet_uamt_s7"
+  }
+}

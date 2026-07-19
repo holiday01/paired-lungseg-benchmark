@@ -1,0 +1,7 @@
+# Versions used for the results in the paper (Python 3.12).
+torch==2.11.0+cu128
+monai==1.5.2
+numpy==2.4.6
+scipy==1.17.1
+matplotlib==3.10.9
+nnunetv2==2.7.0

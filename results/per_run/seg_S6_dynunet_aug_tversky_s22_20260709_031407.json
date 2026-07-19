@@ -1,0 +1,103 @@
+{
+  "timestamp": "20260709_031407",
+  "ssl": "none",
+  "tag": "S6_dynunet_aug_tversky_s22",
+  "seed": 22,
+  "n_train_cases": 62,
+  "n_val_cases": 20,
+  "n_test_cases": 20,
+  "n_unlabeled": 0,
+  "max_iterations": 20000,
+  "best_val_dice": 0.4283829373049491,
+  "test_dice": 0.331498040054241,
+  "dice_by_size": {
+    "<1cm3": [
+      0.0,
+      1
+    ],
+    "1-10cm3": [
+      0.2900225600324783,
+      14
+    ],
+    "10-50cm3": [
+      0.2609842189665317,
+      8
+    ],
+    ">=50cm3": [
+      0.8235864830744388,
+      3
+    ]
+  },
+  "lesion_detection_sens": 0.4230769230769231,
+  "history": [
+    {
+      "iter": 2000,
+      "val_dice": 0.08885285785103879
+    },
+    {
+      "iter": 4000,
+      "val_dice": 0.08978544560838495
+    },
+    {
+      "iter": 6000,
+      "val_dice": 0.15830555228202392
+    },
+    {
+      "iter": 8000,
+      "val_dice": 0.14606395633139466
+    },
+    {
+      "iter": 10000,
+      "val_dice": 0.2637353431782071
+    },
+    {
+      "iter": 12000,
+      "val_dice": 0.24918964608380909
+    },
+    {
+      "iter": 14000,
+      "val_dice": 0.4155505307538425
+    },
+    {
+      "iter": 16000,
+      "val_dice": 0.31221598907728426
+    },
+    {
+      "iter": 18000,
+      "val_dice": 0.4283829373049491
+    },
+    {
+      "iter": 20000,
+      "val_dice": 0.42690225860345893
+    }
+  ],
+  "config": {
+    "ssl": "none",
+    "model": "dynunet",
+    "max_iterations": 20000,
+    "eval_every": 2000,
+    "labeled_bs": 2,
+    "unlabeled_bs": 2,
+    "lr": 0.001,
+    "cons_weight": 1.0,
+    "cons_rampup": 400,
+    "ema_decay": 0.99,
+    "uamt_t": 4,
+    "dropout": 0.0,
+    "pseudo_thresh": 0.9,
+    "patience": 0,
+    "loss": "focaltversky",
+    "ema_eval": false,
+    "copypaste": false,
+    "augment": true,
+    "postproc": true,
+    "spacing": 1.0,
+    "n_unlabeled": 400,
+    "max_labeled_cases": 0,
+    "seed": 22,
+    "seg_dir": "data/processed_seg_1mm",
+    "tag": "S6_dynunet_aug_tversky_s22",
+    "case_list": "",
+    "clean_mask_min": 0
+  }
+}

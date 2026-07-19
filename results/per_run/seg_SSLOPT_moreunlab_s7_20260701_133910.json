@@ -1,0 +1,101 @@
+{
+  "timestamp": "20260701_133910",
+  "ssl": "meanteacher",
+  "tag": "SSLOPT_moreunlab_s7",
+  "seed": 7,
+  "n_train_cases": 62,
+  "n_val_cases": 20,
+  "n_test_cases": 20,
+  "n_unlabeled": 800,
+  "max_iterations": 20000,
+  "best_val_dice": 0.45845906342732284,
+  "test_dice": 0.5977342210529569,
+  "dice_by_size": {
+    "<1cm3": [
+      0.18415937803692906,
+      4
+    ],
+    "1-10cm3": [
+      0.6537837418144086,
+      22
+    ],
+    "10-50cm3": [
+      0.8508561480642192,
+      2
+    ],
+    ">=50cm3": [
+      0.555217251697782,
+      2
+    ]
+  },
+  "lesion_detection_sens": 0.8,
+  "history": [
+    {
+      "iter": 2000,
+      "val_dice": 0.10325208322470415
+    },
+    {
+      "iter": 4000,
+      "val_dice": 0.28279524427557834
+    },
+    {
+      "iter": 6000,
+      "val_dice": 0.37204341266479396
+    },
+    {
+      "iter": 8000,
+      "val_dice": 0.27870044590726145
+    },
+    {
+      "iter": 10000,
+      "val_dice": 0.39984505518368546
+    },
+    {
+      "iter": 12000,
+      "val_dice": 0.29351837448360063
+    },
+    {
+      "iter": 14000,
+      "val_dice": 0.4300340998593947
+    },
+    {
+      "iter": 16000,
+      "val_dice": 0.40639343579554776
+    },
+    {
+      "iter": 18000,
+      "val_dice": 0.45845906342732284
+    },
+    {
+      "iter": 20000,
+      "val_dice": 0.43415254487576205
+    }
+  ],
+  "config": {
+    "ssl": "meanteacher",
+    "model": "dynunet",
+    "max_iterations": 20000,
+    "eval_every": 2000,
+    "labeled_bs": 2,
+    "unlabeled_bs": 2,
+    "lr": 0.001,
+    "cons_weight": 1.0,
+    "cons_rampup": 400,
+    "ema_decay": 0.99,
+    "uamt_t": 4,
+    "dropout": 0.0,
+    "pseudo_thresh": 0.9,
+    "patience": 4,
+    "loss": "dicece",
+    "ema_eval": false,
+    "copypaste": false,
+    "augment": true,
+    "postproc": true,
+    "spacing": 1.0,
+    "n_unlabeled": 800,
+    "max_labeled_cases": 0,
+    "seed": 7,
+    "seg_dir": "data/processed_seg_1mm",
+    "tag": "SSLOPT_moreunlab_s7"
+  }
+}

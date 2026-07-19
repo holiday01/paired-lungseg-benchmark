@@ -1,0 +1,101 @@
+{
+  "timestamp": "20260702_053733",
+  "ssl": "meanteacher",
+  "tag": "SSLOPT_stabmt_s1337",
+  "seed": 1337,
+  "n_train_cases": 62,
+  "n_val_cases": 20,
+  "n_test_cases": 20,
+  "n_unlabeled": 400,
+  "max_iterations": 20000,
+  "best_val_dice": 0.5297967356808783,
+  "test_dice": 0.4208821024462472,
+  "dice_by_size": {
+    "<1cm3": [
+      0.15602836879432624,
+      5
+    ],
+    "1-10cm3": [
+      0.3865001748677499,
+      21
+    ],
+    "10-50cm3": [
+      0.8261246317940587,
+      4
+    ],
+    ">=50cm3": [
+      0.8462011324630498,
+      1
+    ]
+  },
+  "lesion_detection_sens": 0.5483870967741935,
+  "history": [
+    {
+      "iter": 2000,
+      "val_dice": 0.08063638557840141
+    },
+    {
+      "iter": 4000,
+      "val_dice": 0.05128239519180258
+    },
+    {
+      "iter": 6000,
+      "val_dice": 0.19923385561554266
+    },
+    {
+      "iter": 8000,
+      "val_dice": 0.22510443999964705
+    },
+    {
+      "iter": 10000,
+      "val_dice": 0.3312952105749
+    },
+    {
+      "iter": 12000,
+      "val_dice": 0.38609038532399614
+    },
+    {
+      "iter": 14000,
+      "val_dice": 0.4488411134719448
+    },
+    {
+      "iter": 16000,
+      "val_dice": 0.48544913152843633
+    },
+    {
+      "iter": 18000,
+      "val_dice": 0.4698544442006798
+    },
+    {
+      "iter": 20000,
+      "val_dice": 0.5297967356808783
+    }
+  ],
+  "config": {
+    "ssl": "meanteacher",
+    "model": "dynunet",
+    "max_iterations": 20000,
+    "eval_every": 2000,
+    "labeled_bs": 2,
+    "unlabeled_bs": 2,
+    "lr": 0.001,
+    "cons_weight": 0.1,
+    "cons_rampup": 3000,
+    "ema_decay": 0.999,
+    "uamt_t": 4,
+    "dropout": 0.0,
+    "pseudo_thresh": 0.9,
+    "patience": 4,
+    "loss": "dicece",
+    "ema_eval": false,
+    "copypaste": false,
+    "augment": true,
+    "postproc": true,
+    "spacing": 1.0,
+    "n_unlabeled": 400,
+    "max_labeled_cases": 0,
+    "seed": 1337,
+    "seg_dir": "data/processed_seg_1mm",
+    "tag": "SSLOPT_stabmt_s1337"
+  }
+}
