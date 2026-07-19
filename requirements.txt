@@ -5,3 +5,4 @@ numpy==2.4.6
 scipy==1.17.1
 matplotlib==3.10.9
 nnunetv2==2.7.0
+SimpleITK==2.5.5
