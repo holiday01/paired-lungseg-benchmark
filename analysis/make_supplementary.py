@@ -161,7 +161,7 @@ def table_s6():
         ("Mean-Teacher (reference)", "S7_dynunet_meanteacher"),
         ("Confidence pseudo-label", "SSLOPT_pseudo"),
         ("Stabilized Mean-Teacher", "SSLOPT_stabmt"),
-        ("More unlabeled ($2\\times$ pool)", "SSLOPT_moreunlab"),
+        ("More unlabeled (800 volumes)", "SSLOPT_moreunlab"),
         ("UA-MT", "S9_dynunet_uamt"),
     ]
     body = []
@@ -228,10 +228,9 @@ validation; vol, volume.
 \caption{\textbf{Full paired comparison of DynUNet-plain against every other
 strategy.} Per-seed Dice differences (reference $-$ competitor), paired
 one-sided $t$ statistic and $p$, and the Holm--Bonferroni adjusted $p$ across
-the seven comparisons. $^{*}$ Holm-adjusted $p<0.05$. The paired test removes
-the common-mode variance of the shared random realizations (each seed fixes the
-patient split, initialization, and training stochasticity) that inflates the
-marginal confidence intervals in Table~2 of the main text.}
+the seven comparisons. $^{*}$ Holm-adjusted $p<0.05$. The paired design is
+described in Methods. Under a Benjamini--Hochberg false-discovery-rate control
+at 0.05, five of the seven comparisons remain significant.}
 \footnotesize
 \setlength{\tabcolsep}{4pt}
 \resizebox{\textwidth}{!}{%
@@ -266,14 +265,14 @@ Rank & Strategy & \multicolumn{5}{c}{Test Dice by seed} & Mean $\pm$ SD \\
 \begin{table}[h]
 \centering
 \caption{\textbf{Semi-supervised optimization sub-study.} Four semi-supervised
-variants trained on the same DynUNet backbone with the 2{,}449-nodule
-unlabeled pool, evaluated at three shared seeds (UA-MT at one seed only).
-Model selection should use the validation Dice; on that metric none of the
-variants reaches the supervised reference, and the occasionally high
-\emph{test} Dice (e.g.\ pseudo-labeling) reflects small-test-set variance
-rather than a genuine gain. This is the negative result underlying the
-manuscript's claim that added semi-supervision did not improve on supervised
-training.}
+variants trained on the same DynUNet backbone with unlabeled nodules sampled
+from the 2{,}449-nodule pool (400 volumes per run; 800 for the doubled
+variant), evaluated at three shared seeds (UA-MT at one seed only). None of
+the variants reaches the supervised reference on validation Dice, the metric
+used for model selection; the occasionally higher \emph{test} Dice (e.g.\
+pseudo-labeling) reflects small-test-set variance. The supervised reference's
+three-seed test Dice coincides with the five-seed benchmark mean of Table~2
+(0.641) by rounding; the seed subsets differ.}
 \small
 \begin{tabular}{lc cc}
 \toprule
@@ -289,15 +288,19 @@ Variant & Seeds & Val.\ Dice (sel.) & Test Dice \\
 \centering
 \caption{\textbf{Per-tumor FROC operating points, in-site versus external.}
 One expert mask counts as one tumor; sensitivity and false positives per
-volume are averaged over five seeds. In-site uses the held-out hospital test
-set; external uses 421 TCIA NSCLC-Radiomics cases with the same checkpoints.
+volume are averaged over the headline model's five seeds (7, 42, 101, 1337,
+2024). In-site uses the held-out hospital test set; external uses 421 TCIA
+NSCLC-Radiomics cases with the same checkpoints. Both false-positive counts
+are per cropped lesion volume; external crops are larger (median extent 205
+versus 191~mm per axis), so the external counts partly reflect the larger
+search volume.
 Supports Figures~2 and~3B of the main text.}
 \small
 \begin{tabular}{c cc cc}
 \toprule
 & \multicolumn{2}{c}{In-site} & \multicolumn{2}{c}{External (TCIA)} \\
 \cmidrule(lr){2-3}\cmidrule(lr){4-5}
-Prob.\ threshold & Sensitivity & FP/vol & Sensitivity & FP/case \\
+Prob.\ threshold & Sensitivity & FP/vol & Sensitivity & FP/vol \\
 \midrule
 """ + table_s4() + r"""
 \bottomrule
