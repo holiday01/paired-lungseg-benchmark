@@ -211,9 +211,6 @@ Lung Tumor Segmentation on CT, with an External Stress Test}
 \maketitle
 \vspace{-2.5em}
 
-\noindent All values are computed from the stored result files by
-\texttt{ssl\_study/make\_supplementary.py}; no number is hand-entered.
-
 \vspace{0.6em}
 \noindent\textbf{Abbreviations used in these tables:} aug, data augmentation; CI, confidence
 interval; Dice, Dice similarity coefficient; FP, false positives; FROC, free-response receiver
