@@ -57,7 +57,7 @@ ax.errorbar(fp, sens, yerr=sd, fmt="o-", color="#2c7fb8", capsize=3, ms=4,
 ax.axhline(1.0, ls="--", color="0.5", lw=1, label="case-level counting $\\approx$1.0")
 ax.plot(4.3, 0.385, "s", color="#d62728", ms=9, zorder=4,
         label="naive connected-component (0.385)")
-ax.annotate("lesion-definition artifact\n(resampling fragments)", xy=(4.3, 0.385),
+ax.annotate("lesion-definition artifact\n(satellite components in the stored annotations)", xy=(4.3, 0.385),
             xytext=(6.5, 0.45), fontsize=7.5, color="#d62728",
             arrowprops=dict(arrowstyle="->", color="#d62728", lw=1))
 ax.set_xlabel("False positives per cropped lesion volume")
