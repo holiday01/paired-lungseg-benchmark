@@ -91,7 +91,7 @@ def table_s2():
         d = c["per_seed_diff"]
         diffs = " & ".join(f"{d[str(k)]:+.3f}" for k in SEEDS)
         padj = hp[c["competitor"]]
-        star = "$^{*}$" if padj < 0.05 else ""
+        star = ""  # descriptive only: no significance markers at n=5
         body.append(
             f"{c['label']} & {diffs} & {c['mean_diff']:.3f} $\\pm$ {c['sd_diff']:.3f} "
             f"& {c['ref_wins']} & {c['paired_t']:.2f} & {c['p_one_sided']:.3f} "
@@ -204,8 +204,8 @@ doc = r"""% !TEX program = pdflatex
 \setlength{\tabcolsep}{5pt}
 \title{\textbf{Supplementary Material}\\[4pt]
 \large Supplementary Tables S1--S5\\[8pt]
-\normalsize Paired Multi-Seed Comparison of Deep Learning Strategies for Lung Tumor
-Segmentation on CT, with External Validation}
+\normalsize Paired Multi-Seed Comparison of Deep Learning Strategies for Lesion-Centered
+Lung Tumor Segmentation on CT, with an External Stress Test}
 \date{}
 \begin{document}
 \maketitle
@@ -228,9 +228,9 @@ validation; vol, volume.
 \caption{\textbf{Full paired comparison of DynUNet-plain against every other
 strategy.} Per-seed Dice differences (reference $-$ competitor), paired
 one-sided $t$ statistic and $p$, and the Holm--Bonferroni adjusted $p$ across
-the seven comparisons. $^{*}$ Holm-adjusted $p<0.05$. The paired design is
-described in Methods. Under a Benjamini--Hochberg false-discovery-rate control
-at 0.05, five of the seven comparisons remain significant.}
+the seven comparisons. The $t$-based $p$-values are reported descriptively
+and are not used for confirmatory inference (Methods); the Holm and
+Benjamini--Hochberg adjustments are listed for completeness.}
 \footnotesize
 \setlength{\tabcolsep}{4pt}
 \resizebox{\textwidth}{!}{%
@@ -270,7 +270,8 @@ from the 2{,}449-nodule pool (400 volumes per run; 800 for the doubled
 variant), evaluated at three shared seeds (UA-MT at one seed only). None of
 the variants reaches the supervised reference on validation Dice, the metric
 used for model selection; the occasionally higher \emph{test} Dice (e.g.\
-pseudo-labeling) reflects small-test-set variance. The supervised reference's
+pseudo-labeling) was not accompanied by higher validation Dice or consistent
+replication. The supervised reference's
 three-seed test Dice coincides with the five-seed benchmark mean of Table~2
 (0.641) by rounding; the seed subsets differ.}
 \small
@@ -286,9 +287,9 @@ Variant & Seeds & Val.\ Dice (sel.) & Test Dice \\
 %---------------------------------------------------------------- S4 (FROC operating points)
 \begin{table}[h]
 \centering
-\caption{\textbf{Per-tumor FROC operating points, in-site versus external.}
+\caption{\textbf{Per-tumor localization (FROC) operating points, in-site versus external.}
 One expert mask counts as one tumor; sensitivity and false positives per
-volume are averaged over the headline model's five seeds (7, 42, 101, 1337,
+volume are averaged over the selected model's five seeds (7, 42, 101, 1337,
 2024). In-site uses the held-out hospital test set; external uses 421 TCIA
 NSCLC-Radiomics cases with the same checkpoints. Both false-positive counts
 are per cropped lesion volume; external crops are larger (median extent 205
@@ -310,7 +311,7 @@ Prob.\ threshold & Sensitivity & FP/vol & Sensitivity & FP/vol \\
 %---------------------------------------------------------------- S5 (Dice by lesion volume)
 \begin{table}[h]
 \centering
-\caption{\textbf{Dice stratified by lesion volume (headline model, five seeds).}
+\caption{\textbf{Dice stratified by lesion volume (selected model, five seeds).}
 Exact values behind Figure~4 of the main text. Bands with fewer than five
 contributing seeds are noted; the smallest band ($<1$\,cm\textsuperscript{3})
 is the least stable.}

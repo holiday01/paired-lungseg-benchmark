@@ -63,10 +63,10 @@ assert abs(INF["froc_aggregate"]["0.5"]["sens_mean"]-0.953) < 0.005, "in-site pe
 ax2.errorbar(ifp, isens, yerr=isd, fmt="o-", color="#2c7fb8", capsize=3, ms=4, label="in-site")
 ax2.errorbar(efp, esens, yerr=esd, fmt="s-", color="#d95f0e", capsize=3, ms=4, label="external")
 ax2.set_xlabel("False positives per cropped volume")
-ax2.set_ylabel("Per-tumor detection sensitivity")
+ax2.set_ylabel("Per-tumor localization sensitivity")
 ax2.set_ylim(0, 1); ax2.set_xlim(left=0)
 ax2.legend(fontsize=8, loc="lower right")
-ax2.set_title("B  Per-tumor detection, in-site versus external", fontsize=9, loc="left")
+ax2.set_title("B  Per-tumor localization, in-site versus external", fontsize=9, loc="left")
 ax2.grid(alpha=0.3)
 
 plt.tight_layout()

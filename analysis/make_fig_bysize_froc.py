@@ -54,17 +54,17 @@ assert abs(agg["0.5"]["sens_mean"]-0.953) < 0.005, "corrected FROC sens moved"
 fig, ax = plt.subplots(figsize=(5.9, 4.3))
 ax.errorbar(fp, sens, yerr=sd, fmt="o-", color="#2c7fb8", capsize=3, ms=4,
             label="per-tumor (one expert mask = one tumor)")
-ax.axhline(1.0, ls="--", color="0.5", lw=1, label="case-level detection $\\approx$1.0")
+ax.axhline(1.0, ls="--", color="0.5", lw=1, label="case-level counting $\\approx$1.0")
 ax.plot(4.3, 0.385, "s", color="#d62728", ms=9, zorder=4,
         label="naive connected-component (0.385)")
 ax.annotate("lesion-definition artifact\n(resampling fragments)", xy=(4.3, 0.385),
             xytext=(6.5, 0.45), fontsize=7.5, color="#d62728",
             arrowprops=dict(arrowstyle="->", color="#d62728", lw=1))
 ax.set_xlabel("False positives per cropped lesion volume")
-ax.set_ylabel("Detection sensitivity")
+ax.set_ylabel("Localization sensitivity")
 ax.set_ylim(0, 1.05); ax.set_xlim(0, 12)
 ax.legend(fontsize=7.5, loc="lower right")
-ax.set_title("Detection sensitivity by lesion definition", fontsize=10)
+ax.set_title("In-crop localization sensitivity by lesion definition", fontsize=10)
 ax.grid(alpha=0.3)
 plt.tight_layout()
 plt.savefig(FIGD/"fig5_froc.pdf", bbox_inches="tight")
