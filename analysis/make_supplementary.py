@@ -318,7 +318,7 @@ is the least stable.}
 \small
 \begin{tabular}{lccc c}
 \toprule
-Volume band (cm\textsuperscript{3}) & Pooled lesion-instances & Seeds & Dice (mean $\pm$ SD) & 95\% CI \\
+Volume band (cm\textsuperscript{3}) & Pooled instances & Seeds & Dice (mean $\pm$ SD) & 95\% CI \\
 \midrule
 """ + table_s3() + r"""
 \bottomrule
