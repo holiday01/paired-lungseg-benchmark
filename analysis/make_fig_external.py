@@ -13,8 +13,8 @@ import matplotlib.pyplot as plt
 
 ROOT = Path("/home/holiday/lung_ct")
 EXT = json.load(open(ROOT / "ssl_study/results_external_nsclc.json"))          # per-seed Dice
-EXTF = json.load(open(ROOT / "ssl_study/results_external_froc_corrected.json"))  # per-tumour FROC
-INF = json.load(open(ROOT / "ssl_study/froc_corrected_5seed.json"))             # in-site per-tumour FROC
+EXTF = json.load(open(ROOT / "ssl_study/results_external_froc_corrected.json"))  # per-tumor FROC
+INF = json.load(open(ROOT / "ssl_study/froc_corrected_5seed.json"))             # in-site per-tumor FROC
 FIG = ROOT / "manuscripts/study2_segmentation/figures/fig_external.pdf"
 
 # in-site headline per-seed Dice
@@ -33,7 +33,7 @@ assert abs(ex_v.mean() - EXT["dice_mean_across_seeds"]) < 1e-6, "external mean m
 assert abs(EXT["dice_mean_across_seeds"] - 0.449) < 0.002, "external mean != 0.449"
 assert len(seeds) == 5, f"expected 5 shared seeds, got {seeds}"
 
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9, 3.8))
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7.0, 4.3))
 
 # Left: paired dot plot
 for i, s in enumerate(seeds):
@@ -47,9 +47,9 @@ ax1.set_xticks([0, 1])
 ax1.set_xticklabels([f"In-site\n0.659$\\pm$0.028", f"External\n0.449$\\pm$0.014"])
 ax1.set_ylabel("Test Dice")
 ax1.set_ylim(0.35, 0.75)
-ax1.set_title("A  Generalization gap (n=421 external)", fontsize=10, loc="left")
+ax1.set_title("A  In-site versus external test Dice", fontsize=10, loc="left")
 
-# Right: per-tumour FROC, in-site vs external (SAME lesion definition)
+# Right: per-tumor FROC, in-site vs external (SAME lesion definition)
 def curve(agg):
     thr = sorted(agg, key=float)
     return ([agg[t]["fp_mean"] for t in thr],
@@ -57,20 +57,21 @@ def curve(agg):
             [agg[t]["sens_sd"] or 0 for t in thr])
 efp, esens, esd = curve(EXTF["froc_aggregate"])
 ifp, isens, isd = curve(INF["froc_aggregate"])
-# guard: per-tumour operating points reproduce the stored values
-assert abs(EXTF["froc_aggregate"]["0.5"]["sens_mean"]-0.788) < 0.005, "ext per-tumour sens moved"
-assert abs(INF["froc_aggregate"]["0.5"]["sens_mean"]-0.953) < 0.005, "in-site per-tumour sens moved"
+# guard: per-tumor operating points reproduce the stored values
+assert abs(EXTF["froc_aggregate"]["0.5"]["sens_mean"]-0.788) < 0.005, "ext per-tumor sens moved"
+assert abs(INF["froc_aggregate"]["0.5"]["sens_mean"]-0.953) < 0.005, "in-site per-tumor sens moved"
 ax2.errorbar(ifp, isens, yerr=isd, fmt="o-", color="#2c7fb8", capsize=3, ms=4, label="in-site")
 ax2.errorbar(efp, esens, yerr=esd, fmt="s-", color="#d95f0e", capsize=3, ms=4, label="external")
-ax2.set_xlabel("False positives per case")
-ax2.set_ylabel("Per-tumour detection sensitivity")
+ax2.set_xlabel("False positives per cropped volume")
+ax2.set_ylabel("Per-tumor detection sensitivity")
 ax2.set_ylim(0, 1); ax2.set_xlim(left=0)
 ax2.legend(fontsize=8, loc="lower right")
-ax2.set_title("B  Per-tumour detection (same definition)", fontsize=10, loc="left")
+ax2.set_title("B  Per-tumor detection, in-site versus external", fontsize=9, loc="left")
 ax2.grid(alpha=0.3)
 
 plt.tight_layout()
 FIG.parent.mkdir(exist_ok=True)
-plt.savefig(FIG, bbox_inches="tight")
-plt.savefig(str(FIG).replace(".pdf", ".png"), dpi=150, bbox_inches="tight")
+fig.tight_layout()
+plt.savefig(FIG)
+plt.savefig(str(FIG).replace(".pdf", ".png"), dpi=600)
 print(f"wrote {FIG}  (in-site {in_v.mean():.3f}, external {ex_v.mean():.3f}, guard PASS)")
