@@ -24,7 +24,7 @@ STRATEGIES = {
     "S3_segresnet_plain": "SegResNet, supervised",
     "S4_dynunet_aug": "DynUNet + augmentation",
     "S5_dynunet_aug_pp": "DynUNet + aug + post-proc",
-    "S6_dynunet_aug_tversky": "DynUNet + aug + pp + Focal-Tversky",
+    "S6_dynunet_aug_tversky": "DynUNet + aug + pp + Tversky",
     "S7_dynunet_meanteacher": "DynUNet + Mean-Teacher (SSL)",
     "S8_attentionunet_aug_pp": "AttentionUNet + aug + pp",
 }
@@ -90,8 +90,12 @@ for base, label in STRATEGIES.items():
     if n > 1 and sd > 0:
         t = md / (sd / math.sqrt(n))
         p1 = t_sf(t, n - 1)
+        tcrit = float(stats.t.ppf(0.975, n - 1)) if HAVE_SCIPY else None
+        ci95 = ([round(md - tcrit * sd / math.sqrt(n), 4),
+                 round(md + tcrit * sd / math.sqrt(n), 4)] if tcrit is not None else None)
     else:
         t, p1 = float("inf") if md > 0 else 0.0, None
+        ci95 = None
     wilcox = None
     if HAVE_SCIPY and n >= 6:
         try:
@@ -103,6 +107,7 @@ for base, label in STRATEGIES.items():
         "per_seed_diff": {str(s): round(ref[s] - other[s], 4) for s in seeds},
         "mean_diff": round(md, 4), "sd_diff": None if math.isnan(sd) else round(sd, 4),
         "ref_wins": f"{wins}/{n}",
+        "ci95_diff": ci95,
         "paired_t": None if not math.isfinite(t) else round(t, 3),
         "p_one_sided": None if p1 is None else round(p1, 4),
         "wilcoxon_p_one_sided": None if wilcox is None else round(wilcox, 4),
@@ -117,7 +122,9 @@ out = {
     "reference_beats_every_competitor_on_every_shared_seed": all_win,
     "comparisons": comparisons,
     "note": ("Paired one-sided test, H1: DynUNet-plain Dice > competitor on shared seeds. "
-             "Removes common-mode seed variance that inflates the marginal CIs. "
+             "Each seed fixes the patient split, initialization and training stochasticity; "
+             "pairing removes the common-mode variance of that shared random realization. "
+             "ci95_diff is the two-sided 95% t CI of the paired difference. "
              "p from Student-t (exact via scipy when available); Wilcoxon reported when n>=6."),
 }
 OUT.write_text(json.dumps(out, indent=2))

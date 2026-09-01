@@ -26,7 +26,7 @@ STRATEGIES = {
     "S3_segresnet_plain":      "SegResNet, supervised",
     "S4_dynunet_aug":          "DynUNet + augmentation",
     "S5_dynunet_aug_pp":       "DynUNet + aug + post-proc",
-    "S6_dynunet_aug_tversky":  "DynUNet + aug + pp + Focal-Tversky",
+    "S6_dynunet_aug_tversky":  "DynUNet + aug + pp + Tversky",
     "S7_dynunet_meanteacher":  "DynUNet + Mean-Teacher (SSL)",
     "S8_attentionunet_aug_pp": "AttentionUNet + aug + pp",
 }

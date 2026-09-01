@@ -23,7 +23,9 @@ top = rows[0]
 assert top["strategy"] == "S2_dynunet_plain", "DynUNet-plain not rank 1"
 assert all(c["mean_diff"] > 0 for c in PAIR["comparisons"]), "a paired mean diff went non-positive"
 
-fig, (axA, axB) = plt.subplots(1, 2, figsize=(11, 4.4))
+# JCAT artwork rule: no figure may exceed 7 in in width or length, and the short axis
+# must be >= 4 in. The two panels carry long strategy labels, so they are stacked.
+fig, (axA, axB) = plt.subplots(2, 1, figsize=(7.0, 6.9))
 
 # Panel A: ranking with CIs
 labels = [r["label"] for r in rows][::-1]
@@ -40,7 +42,7 @@ for yi, m, c in zip(y, means, colors):
 axA.set_yticks(y)
 axA.set_yticklabels(labels, fontsize=8)
 axA.set_xlabel("Test Dice (mean $\\pm$ 95% CI)")
-axA.set_title("A  Strategy ranking (marginal CIs overlap)", fontsize=10, loc="left")
+axA.set_title("A  Strategy ranking with marginal 95% CIs", fontsize=10, loc="left")
 axA.set_xlim(0, 1)
 axA.grid(axis="x", alpha=0.3)
 
@@ -56,11 +58,12 @@ axB.axvline(0, color="k", lw=1)
 axB.set_yticks(yB)
 axB.set_yticklabels([c["label"] for c in comps], fontsize=8)
 axB.set_xlabel("Paired $\\Delta$Dice: DynUNet-plain $-$ competitor")
-axB.set_title("B  Paired per-seed differences (DynUNet-plain best)", fontsize=10, loc="left")
+axB.set_title("B  Paired per-seed Dice differences", fontsize=10, loc="left")
 axB.grid(axis="x", alpha=0.3)
 
 plt.tight_layout()
 FIG.parent.mkdir(exist_ok=True)
-plt.savefig(FIG, bbox_inches="tight")
-plt.savefig(str(FIG).replace(".pdf", ".png"), dpi=150, bbox_inches="tight")
+fig.tight_layout()
+plt.savefig(FIG)
+plt.savefig(str(FIG).replace(".pdf", ".png"), dpi=600)
 print(f"wrote {FIG}  (n_ref_seeds={PAIR['n_reference_seeds']}, guard PASS)")
